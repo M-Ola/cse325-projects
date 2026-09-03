@@ -1,0 +1,44 @@
+ 
+ //Additional record added
+ Pizzas = new List<Pizza>
+        {
+            new Pizza { Id = 1, Name = "Classic Italian", IsGlutenFree = false },
+            new Pizza { Id = 2, Name = "Veggie", IsGlutenFree = true },
+            new Pizza { Id = 3, Name = "Pepperoni Feast", IsGlutenFree = false }
+
+
+        };
+
+
+//Sales summary function
+void GenerateSalesSummaryReport(IEnumerable<string> salesFiles, string outputDirectory)
+{
+    double grandTotal = 0;
+    var reportLines = new List<string>();
+
+    reportLines.Add("Sales Summary");
+    reportLines.Add("----------------------------");
+    reportLines.Add(Environment.NewLine);
+    reportLines.Add("Details:");
+
+
+    // Collect details for each file
+    foreach (var file in salesFiles)
+    {
+        string salesJson = File.ReadAllText(file);
+        SalesData? data = JsonConvert.DeserializeObject<SalesData?>(salesJson);
+
+        double fileTotal = data?.Total ?? 0;
+        grandTotal += fileTotal;
+
+        string fileName = Path.GetFileName(file);
+        reportLines.Add($" {fileName}: ${fileTotal:N2}");
+    }
+
+    reportLines.Insert(2, $" Total Sales: ${grandTotal:N2}");
+    reportLines.Add(""); // newline at end
+
+    // Write the report file
+    var summaryPath = Path.Combine(outputDirectory, "salesSummary.txt");
+    File.WriteAllLines(summaryPath, reportLines);
+}

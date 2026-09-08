@@ -51,7 +51,34 @@ public static class SeedData
                     Genre = "Western",
                     Price = 3.99M,
                     Rating = "PG"
-                }
+                },
+new Movie
+            {
+
+            
+                Title = "Batman Begins",
+                ReleaseDate = DateTime.Parse("2010-07-16"),
+                Genre = "SciFi",
+                Price = 12.99M,
+                Rating = "PG13"
+            },
+            new Movie
+            {
+                Title = "Black Panther",
+                ReleaseDate = DateTime.Parse("2018-02-16"),
+                Genre = "Action",
+                Price = 14.99M,
+                Rating = "PG13"
+            },
+            new Movie
+            {
+                Title = "Interstellar",
+                ReleaseDate = DateTime.Parse("2014-11-07"),
+                Genre = "SciFi",
+                Price = 13.99M,
+                Rating = "PG13"
+            }
+         
             );
             context.SaveChanges();
         }

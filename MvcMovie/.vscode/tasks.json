@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "../../Library/Application Support/Code/User/workspaceStorage/de00733e779f615222f84785b7e20de2/ms-dotnettools.csdevkit/MvcMovie.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "../../Library/Application Support/Code/User/workspaceStorage/de00733e779f615222f84785b7e20de2/ms-dotnettools.csdevkit/MvcMovie.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "../../Library/Application Support/Code/User/workspaceStorage/de00733e779f615222f84785b7e20de2/ms-dotnettools.csdevkit/MvcMovie.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

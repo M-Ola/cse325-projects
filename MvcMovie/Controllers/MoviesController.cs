@@ -19,34 +19,9 @@ namespace MvcMovie.Controllers
             _context = context;
         }
 
-        /* // GET: Movies
-        [HttpPost]
-        public async Task<IActionResult> Index(string searchString, bool notUsed)
-        {
-
-            if (_context.Movie == null)
-            {
-                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
-            }
-
-            var movies = from m in _context.Movie
-                         select m;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                movies = movies.Where(s => s.Title!.ToUpper().Contains(searchString.ToUpper()));
-            }
-
-
-               return View(await movies.ToListAsync());
-       
-       
-        }
- */
-
-
-        // GET: Movies
-        public async Task<IActionResult> Index(string movieGenre, string searchString)
+        
+       // GET: Movies
+        public async Task<IActionResult> Index(string movieGenre, string searchString, int? year)
         {
             if (_context.Movie == null)
             {
@@ -65,7 +40,13 @@ namespace MvcMovie.Controllers
                 movies = movies.Where(s => s.Title!.ToUpper().Contains(searchString.ToUpper()));
             }
 
-            if (!string.IsNullOrEmpty(movieGenre))
+            if (year.HasValue)
+            {
+                movies = movies.Where(m => m.ReleaseDate.Year >= year.Value);
+            }
+
+
+if (!string.IsNullOrEmpty(movieGenre))
             {
                 movies = movies.Where(x => x.Genre == movieGenre);
             }
@@ -73,7 +54,12 @@ namespace MvcMovie.Controllers
             var movieGenreVM = new MovieGenreViewModel
             {
                 Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
-                Movies = await movies.ToListAsync()
+                Movies = await movies.ToListAsync(),
+                SearchString = searchString,
+                MovieGenre = movieGenre,
+                SelectedYear = year
+
+
             };
 
             return View(movieGenreVM);

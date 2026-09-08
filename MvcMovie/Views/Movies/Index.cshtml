@@ -18,7 +18,17 @@
         </select>
        
          <label>Title: <input type="text" asp-for="SearchString" /></label>
-        <input type="submit" value="Filter" />
+        Year:
+        <select asp-for="SelectedYear" name="year">
+            <option value="">All</option>
+            @for (int y = 1980; y <= DateTime.Now.Year; y++)
+            {
+                <option value="@y" selected="@(Model.SelectedYear == y)">
+                    @y
+                </option>
+            }
+        </select>
+ <input type="submit" value="Filter" />
     </p>
 </form>
 <table class="table">

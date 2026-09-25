@@ -1,0 +1,417 @@
+/* =========================================
+   CONNECT FOUR GAME AREA
+   ========================================= */
+
+.game-container {
+    /*
+       Positioning reference
+       for the board and falling pieces.
+    */
+    position: relative;
+
+    /*
+       7 columns × 4em = 28em
+    */
+    width: 28em;
+
+    margin: 1rem 0;
+}
+
+
+/* =========================================
+   COLUMN BUTTONS
+   ========================================= */
+
+.column-selectors {
+    width: 28em;
+
+    display: flex;
+    flex-direction: row;
+
+    margin: 0;
+    padding: 0;
+}
+
+.column-selectors span {
+    /*
+       Each selector corresponds exactly
+       to one board column.
+    */
+    width: 4em;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    font-size: 1em;
+}
+
+
+/* =========================================
+   BOARD
+   ========================================= */
+
+div.board {
+    /*
+       Space between arrows and board.
+    */
+    margin: 1em 0 0 0;
+
+    padding: 0;
+
+    /*
+       7 columns × 4em
+    */
+    width: 28em;
+
+    /*
+       6 rows × 4em
+    */
+    height: 24em;
+
+    display: flex;
+
+    flex-direction: row;
+
+    flex-wrap: wrap;
+
+    overflow: hidden;
+
+    row-gap: 0;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* =========================================
+   BOARD CELLS
+   ========================================= */
+
+span.container {
+    
+    box-sizing: border-box;
+
+    width: 4em;
+    height: 4em;
+
+    margin: 0;
+
+    padding: 4px;
+
+    overflow: hidden;
+
+    background-color: transparent;
+
+    position: relative;
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+
+.container span {
+    width: 3.4em;
+    height: 3.4em;
+
+    border-radius: 50%;
+
+    /*
+       Centers the hole inside the 4em × 4em cell.
+    */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    position: absolute;
+
+    box-shadow:
+        0 0 0 3em var(--board-bg);
+
+    display: block;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   PLAYER PIECES
+   ========================================= */
+
+/* The falling game pieces */
+.player1,
+.player2 {
+    width: 3.1em;
+    height: 3.1em;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: 2em;
+
+    display: block;
+
+    z-index: 2;
+}
+
+
+/* Player 1 */
+
+.player1 {
+    background-color: var(--player1);
+
+    animation-timing-function:
+        cubic-bezier(.5, .05, 1, .5);
+
+    animation-iteration-count: 1;
+
+    animation-fill-mode: forwards;
+
+    box-shadow:
+        0 0 0 4px var(--player1);
+}
+
+
+/* Player 2 */
+
+.player2 {
+    background-color: var(--player2);
+
+    animation-timing-function:
+        cubic-bezier(.5, .05, 1, .5);
+
+    animation-iteration-count: 1;
+
+    animation-fill-mode: forwards;
+
+    box-shadow:
+        0 0 0 4px var(--player2);
+}
+
+
+/* =========================================
+   COLUMN POSITIONS
+   ========================================= */
+
+.col0 {
+    left: 0.25em;
+}
+
+.col1 {
+    left: 4.25em;
+}
+
+.col2 {
+    left: 8.25em;
+}
+
+.col3 {
+    left: 12.25em;
+}
+
+.col4 {
+    left: 16.25em;
+}
+
+.col5 {
+    left: 20.25em;
+}
+
+.col6 {
+    left: 24.25em;
+}
+
+
+
+.drop1 {
+    animation-duration: 1s;
+    animation-name: drop1
+}
+
+.drop2 {
+    animation-duration: 1.5s;
+    animation-name: drop2
+}
+
+.drop3 {
+    animation-duration: 1.6s;
+    animation-name: drop3
+}
+
+.drop4 {
+    animation-duration: 1.7s;
+    animation-name: drop4
+}
+
+.drop5 {
+    animation-duration: 1.8s;
+    animation-name: drop5
+}
+
+.drop6 {
+    animation-duration: 1.9s;
+    animation-name: drop6
+}
+
+@keyframes drop1 {
+
+    100%,
+    75%,
+    90%,
+    97% {
+        transform: translateY(1.27em)
+    }
+
+    80% {
+        transform: translateY(.4em)
+    }
+
+    95% {
+        transform: translateY(.8em)
+    }
+
+    99% {
+        transform: translateY(1em)
+    }
+}
+
+@keyframes drop2 {
+
+    100%,
+    75%,
+    90%,
+    97% {
+        transform: translateY(5.27em)
+    }
+
+    80% {
+        transform: translateY(3.8em)
+    }
+
+    95% {
+        transform: translateY(4.6em)
+    }
+
+    99% {
+        transform: translateY(4.9em)
+    }
+}
+
+@keyframes drop3 {
+
+    100%,
+    75%,
+    90%,
+    97% {
+        transform: translateY(9.27em)
+    }
+
+    80% {
+        transform: translateY(7.2em)
+    }
+
+    95% {
+        transform: translateY(8.3em)
+    }
+
+    99% {
+        transform: translateY(8.8em)
+    }
+}
+
+@keyframes drop4 {
+
+    100%,
+    75%,
+    90%,
+    97% {
+        transform: translateY(13.27em)
+    }
+
+    80% {
+        transform: translateY(10.6em)
+    }
+
+    95% {
+        transform: translateY(12em)
+    }
+
+    99% {
+        transform: translateY(12.7em)
+    }
+}
+
+@keyframes drop5 {
+
+    100%,
+    75%,
+    90%,
+    97% {
+        transform: translateY(17.27em)
+    }
+
+    80% {
+        transform: translateY(14em)
+    }
+
+    95% {
+        transform: translateY(15.7em)
+    }
+
+    99% {
+        transform: translateY(16.5em)
+    }
+}
+
+@keyframes drop6 {
+
+    100%,
+    75%,
+    90%,
+    97% {
+        transform: translateY(21.27em)
+    }
+
+    80% {
+        transform: translateY(17.4em)
+    }
+
+    95% {
+        transform: translateY(19.4em)
+    }
+
+    99% {
+        transform: translateY(20.4em)
+    }
+}
+
+.move-history {
+    margin-top: 2rem;
+    padding: 1rem;
+
+    max-width: 30em;
+
+    background-color: #f5f5f5;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.move-history h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.move-history ol {
+    margin: 0;
+    padding-left: 2rem;
+}
+
+.move-history li {
+    padding: 0.3rem 0;
+}

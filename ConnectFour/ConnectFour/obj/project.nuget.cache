@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "7Hram5Wss20=",
+  "success": true,
+  "projectFilePath": "/Users/ola/Desktop/cse325/ConnectFour/ConnectFour/ConnectFour.csproj",
+  "expectedPackageFiles": [
+    "/Users/ola/.nuget/packages/microsoft.aspnetcore.app.internal.assets/10.0.11/microsoft.aspnetcore.app.internal.assets.10.0.11.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -4,7 +4,7 @@
 
 .game-container[b-0pk5optfxr] {
     /*
-       This becomes the positioning reference
+       Positioning reference
        for the board and falling pieces.
     */
     position: relative;
@@ -14,13 +14,81 @@
     */
     width: 28em;
 
-    /*
-       Do NOT use "auto" here.
-       auto was centering the board inside the
-       Blazor content area and making it appear
-       shifted to the right.
-    */
     margin: 1rem 0;
+}
+
+/* =========================================
+   GAME SETTINGS
+   ========================================= */
+
+.game-settings[b-0pk5optfxr] {
+    width: 28em;
+
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    background-color: #f5f5f5;
+
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.game-settings h3[b-0pk5optfxr] {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+
+/* =========================================
+   COLOR CONTROLS
+   ========================================= */
+
+.color-controls[b-0pk5optfxr] {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.color-controls label[b-0pk5optfxr] {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.4rem;
+
+    font-weight: 600;
+}
+
+.color-controls input[type="color"][b-0pk5optfxr] {
+    width: 60px;
+    height: 40px;
+
+    cursor: pointer;
+
+    border: 1px solid #777;
+    border-radius: 6px;
+}
+
+
+/* =========================================
+   HIGH CONTRAST CONTROL
+   ========================================= */
+
+.contrast-control[b-0pk5optfxr] {
+    display: flex;
+    align-items: center;
+
+    gap: 0.5rem;
+
+    margin-top: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.contrast-control input[b-0pk5optfxr] {
+    width: 20px;
+    height: 20px;
 }
 
 
@@ -32,24 +100,35 @@
     width: 28em;
 
     display: flex;
-    flex-direction: row;
 
     margin: 0;
     padding: 0;
 }
 
-.column-selectors span[b-0pk5optfxr] {
-    /*
-       Each selector corresponds exactly
-       to one board column.
-    */
+.column-button[b-0pk5optfxr] {
     width: 4em;
+    height: 3em;
 
-    text-align: center;
+    border: none;
+
+    background-color: transparent;
+
+    font-size: 1rem;
 
     cursor: pointer;
 
-    font-size: 1em;
+    border-radius: 6px;
+}
+
+.column-button:hover[b-0pk5optfxr] {
+    background-color: #eeeeee;
+}
+
+.column-button:focus-visible[b-0pk5optfxr] {
+    outline: 3px solid #005fcc;
+    outline-offset: 2px;
+
+    background-color: #eeeeee;
 }
 
 
@@ -87,13 +166,36 @@ div.board[b-0pk5optfxr] {
 
     pointer-events: none;
 
-    /*
-       Keep board in normal stacking order.
-       Negative z-index can cause the board
-       to disappear behind the page layout.
-    */
     z-index: 1;
 }
+
+
+/* =========================================
+   HIGH CONTRAST MODE
+   ========================================= */
+
+.high-contrast[b-0pk5optfxr] {
+    background-color: #000;
+    padding: 1rem;
+
+    border: 3px solid #fff;
+}
+
+.high-contrast .column-button[b-0pk5optfxr] {
+    color: #fff;
+    background-color: #000;
+
+    border: 2px solid #fff;
+}
+
+.high-contrast .column-button:hover[b-0pk5optfxr],
+.high-contrast .column-button:focus-visible[b-0pk5optfxr] {
+    color: #000;
+    background-color: #fff;
+
+    outline: 3px solid #ffff00;
+}
+
 
 
 /* =========================================
@@ -101,10 +203,7 @@ div.board[b-0pk5optfxr] {
    ========================================= */
 
 span.container[b-0pk5optfxr] {
-    /*
-       Very important:
-       padding is included inside the 4em size.
-    */
+    
     box-sizing: border-box;
 
     width: 4em;
@@ -126,8 +225,6 @@ span.container[b-0pk5optfxr] {
 }
 
 
-
-/* The circular holes in the board */
 .container span[b-0pk5optfxr] {
     width: 3.4em;
     height: 3.4em;
@@ -214,40 +311,32 @@ span.container[b-0pk5optfxr] {
    COLUMN POSITIONS
    ========================================= */
 
-/*
-   Each column starts 4em after
-   the previous column.
-
-   The .25em gives a small adjustment
-   to center the 3.5em piece.
-*/
-
 .col0[b-0pk5optfxr] {
-    left: 0.25em;
+    left: 0.45em;
 }
 
 .col1[b-0pk5optfxr] {
-    left: 4.25em;
+    left: 4.45em;
 }
 
 .col2[b-0pk5optfxr] {
-    left: 8.25em;
+    left: 8.45em;
 }
 
 .col3[b-0pk5optfxr] {
-    left: 12.25em;
+    left: 12.45em;
 }
 
 .col4[b-0pk5optfxr] {
-    left: 16.25em;
+    left: 16.45em;
 }
 
 .col5[b-0pk5optfxr] {
-    left: 20.25em;
+    left: 20.45em;
 }
 
 .col6[b-0pk5optfxr] {
-    left: 24.25em;
+    left: 24.45em;
 }
 
 
@@ -438,4 +527,18 @@ span.container[b-0pk5optfxr] {
 
 .move-history li[b-0pk5optfxr] {
     padding: 0.3rem 0;
+}
+
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .player1[b-0pk5optfxr],
+    .player2[b-0pk5optfxr] {
+        animation-duration: 0.01s !important;
+    }
+
 }

@@ -83,5 +83,5 @@
 /Users/ola/Desktop/cse325/ConnectFour/ConnectFour/obj/Debug/net10.0/ConnectFour.genruntimeconfig.cache
 /Users/ola/Desktop/cse325/ConnectFour/ConnectFour/obj/Debug/net10.0/ref/ConnectFour.dll
 /Users/ola/Desktop/cse325/ConnectFour/ConnectFour/obj/Debug/net10.0/scopedcss/Components/Pages/Board.razor.rz.scp.css
-/Users/ola/Desktop/cse325/ConnectFour/ConnectFour/obj/Debug/net10.0/compressed/8t7ubqbmk6-{0}-qbj7ryyfoe-qbj7ryyfoe.gz
-/Users/ola/Desktop/cse325/ConnectFour/ConnectFour/obj/Debug/net10.0/compressed/qps0edvuu1-{0}-qbj7ryyfoe-qbj7ryyfoe.gz
+/Users/ola/Desktop/cse325/ConnectFour/ConnectFour/obj/Debug/net10.0/compressed/8t7ubqbmk6-{0}-2ayh2l1w8f-2ayh2l1w8f.gz
+/Users/ola/Desktop/cse325/ConnectFour/ConnectFour/obj/Debug/net10.0/compressed/qps0edvuu1-{0}-2ayh2l1w8f-2ayh2l1w8f.gz

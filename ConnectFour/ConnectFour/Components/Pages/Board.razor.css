@@ -17,6 +17,80 @@
     margin: 1rem 0;
 }
 
+/* =========================================
+   GAME SETTINGS
+   ========================================= */
+
+.game-settings {
+    width: 28em;
+
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    background-color: #f5f5f5;
+
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.game-settings h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+
+/* =========================================
+   COLOR CONTROLS
+   ========================================= */
+
+.color-controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.color-controls label {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.4rem;
+
+    font-weight: 600;
+}
+
+.color-controls input[type="color"] {
+    width: 60px;
+    height: 40px;
+
+    cursor: pointer;
+
+    border: 1px solid #777;
+    border-radius: 6px;
+}
+
+
+/* =========================================
+   HIGH CONTRAST CONTROL
+   ========================================= */
+
+.contrast-control {
+    display: flex;
+    align-items: center;
+
+    gap: 0.5rem;
+
+    margin-top: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.contrast-control input {
+    width: 20px;
+    height: 20px;
+}
+
 
 /* =========================================
    COLUMN BUTTONS
@@ -26,24 +100,35 @@
     width: 28em;
 
     display: flex;
-    flex-direction: row;
 
     margin: 0;
     padding: 0;
 }
 
-.column-selectors span {
-    /*
-       Each selector corresponds exactly
-       to one board column.
-    */
+.column-button {
     width: 4em;
+    height: 3em;
 
-    text-align: center;
+    border: none;
+
+    background-color: transparent;
+
+    font-size: 1rem;
 
     cursor: pointer;
 
-    font-size: 1em;
+    border-radius: 6px;
+}
+
+.column-button:hover {
+    background-color: #eeeeee;
+}
+
+.column-button:focus-visible {
+    outline: 3px solid #005fcc;
+    outline-offset: 2px;
+
+    background-color: #eeeeee;
 }
 
 
@@ -83,6 +168,34 @@ div.board {
 
     z-index: 1;
 }
+
+
+/* =========================================
+   HIGH CONTRAST MODE
+   ========================================= */
+
+.high-contrast {
+    background-color: #000;
+    padding: 1rem;
+
+    border: 3px solid #fff;
+}
+
+.high-contrast .column-button {
+    color: #fff;
+    background-color: #000;
+
+    border: 2px solid #fff;
+}
+
+.high-contrast .column-button:hover,
+.high-contrast .column-button:focus-visible {
+    color: #000;
+    background-color: #fff;
+
+    outline: 3px solid #ffff00;
+}
+
 
 
 /* =========================================
@@ -199,31 +312,31 @@ span.container {
    ========================================= */
 
 .col0 {
-    left: 0.25em;
+    left: 0.45em;
 }
 
 .col1 {
-    left: 4.25em;
+    left: 4.45em;
 }
 
 .col2 {
-    left: 8.25em;
+    left: 8.45em;
 }
 
 .col3 {
-    left: 12.25em;
+    left: 12.45em;
 }
 
 .col4 {
-    left: 16.25em;
+    left: 16.45em;
 }
 
 .col5 {
-    left: 20.25em;
+    left: 20.45em;
 }
 
 .col6 {
-    left: 24.25em;
+    left: 24.45em;
 }
 
 
@@ -414,4 +527,18 @@ span.container {
 
 .move-history li {
     padding: 0.3rem 0;
+}
+
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .player1,
+    .player2 {
+        animation-duration: 0.01s !important;
+    }
+
 }

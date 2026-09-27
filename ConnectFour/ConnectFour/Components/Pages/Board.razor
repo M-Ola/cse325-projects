@@ -1,21 +1,44 @@
-@using System.Drawing
+
 @inject GameState State
 
-<HeadContent>
-    <style>
-            :root {
-                --board-bg:
-                    @ColorTranslator.ToHtml(BoardColor)
-                ;
-                --player1:
-                    @ColorTranslator.ToHtml(Player1Color)
-                ;
-                --player2:
-                    @ColorTranslator.ToHtml(Player2Color)
-                ;
-            }
-    </style>
-</HeadContent>
+
+<!-- COLOR AND ACCESSIBILITY CONTROLS -->
+<section class="game-settings" aria-labelledby="game-settings-heading">
+
+    <h3 id="game-settings-heading">
+        Game Settings
+    </h3>
+
+    <div class="color-controls">
+
+        <label>
+            Player 1 Color
+            <input type="color" @bind="player1Color" @bind:event="oninput" aria-label="Select Player 1 piece color" />
+        </label>
+
+        <label>
+            Player 2 Color
+            <input type="color" @bind="player2Color" @bind:event="oninput" aria-label="Select Player 2 piece color" />
+        </label>
+
+        <label>
+            Board Color
+            <input type="color" @bind="boardColor" @bind:event="oninput" aria-label="Select board color" />
+        </label>
+
+    </div>
+
+    <label class="contrast-control">
+        <input type="checkbox" @bind="highContrast" />
+
+        High Contrast Mode
+    </label>
+
+</section>
+
+
+
+
 
 
 <!-- GAME STATUS -->
@@ -47,16 +70,20 @@
 
 
 <!-- GAME BOARD -->
-<div class="game-container">
+<div class="game-container @(highContrast ? "high-contrast" : "")" style="
+    --board-bg: @boardColor;
+    --player1: @player1Color;
+    --player2: @player2Color;
+    ">
 
     <nav class="column-selectors">
         @for (byte i = 0; i < 7; i++)
         {
             var col = i;
 
-            <span title="Click to play a piece" @onclick="() => PlayPiece(col)">
+            <button class="column-button" title="Click to play a piece" @onclick="() => PlayPiece(col)">
                 🔽
-            </span>
+            </button>
         }
     </nav>
 
@@ -65,10 +92,16 @@
         @for (var i = 0; i < 42; i++)
         {
             <span class="container">
-                <span></span>
+                <span class="hole"></span>
+
+                @if (!string.IsNullOrEmpty(pieces[i]))
+                {
+                    <span class="@pieces[i]"></span>
+                }
             </span>
         }
     </div>
+
 
 
     @for (var i = 0; i < 42; i++)
@@ -77,6 +110,11 @@
     }
 
 </div>
+
+
+
+
+
 
 
 <!-- MOVE HISTORY -->
@@ -112,7 +150,17 @@
     private string winnerMessage = string.Empty;
     private string errorMessage = string.Empty;
 
+   // Move history list to keep track of the moves made during the game.
     private List<string> moveHistory = new();
+
+
+// Color settings for players and board.
+    private string player1Color = "#ff0000";
+    private string player2Color = "#0000ff";
+    private string boardColor = "#ffd700";
+
+    private bool highContrast = false;
+
 
 
     private string CurrentTurn => (winnerMessage == string.Empty) ? $"Player {State.PlayerTurn}'s Turn" : "";
@@ -120,14 +168,7 @@
 
     
     
-    [Parameter]
-    public Color BoardColor { get; set; } = ColorTranslator.FromHtml("yellow");
-
-    [Parameter]
-    public Color Player1Color { get; set; } = ColorTranslator.FromHtml("red");
-
-    [Parameter]
-    public Color Player2Color { get; set; } = ColorTranslator.FromHtml("blue");
+    
     
     protected override void OnInitialized()
     {
@@ -137,37 +178,41 @@
 
     private void PlayPiece(byte col)
     {
-
         try
         {
             var player = State.PlayerTurn;
             var turn = State.CurrentTurn;
+
             var landingRow = State.PlayPiece(col);
-            pieces[turn] = $"player{player} col{col} drop{landingRow}";
-      
-            // Record the successful move.
-           moveHistory.Add(
-          $"Player {player} → Column {col + 1}, Row {landingRow}"
-      );
-      
-      
+
+            pieces[turn] =
+                $"player{player} col{col} drop{landingRow}";
+
+            moveHistory.Add(
+                $"Player {player} → Column {col + 1}, Row {landingRow}"
+            );
+
+            // Clear previous error after successful move
+            errorMessage = string.Empty;
         }
         catch (ArgumentException ex)
-
         {
             errorMessage = ex.Message;
         }
 
-        // Check whether the move ended the game.
         winnerMessage = State.CheckForWin() switch
         {
-            GameState.WinState.Player1_Wins => "Player 1 Wins!",
-            GameState.WinState.Player2_Wins => "Player 2 Wins!",
-            GameState.WinState.Tie => "It's a tie!",
+            GameState.WinState.Player1_Wins =>
+                "Player 1 Wins!",
+
+            GameState.WinState.Player2_Wins =>
+                "Player 2 Wins!",
+
+            GameState.WinState.Tie =>
+                "It's a tie!",
+
             _ => ""
         };
-   
-   
     }
 
 private void ResetGame()

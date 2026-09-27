@@ -87,32 +87,21 @@
         }
     </nav>
 
-
     <div class="board">
         @for (var i = 0; i < 42; i++)
         {
             <span class="container">
                 <span class="hole"></span>
-
-                @if (!string.IsNullOrEmpty(pieces[i]))
-                {
-                    <span class="@pieces[i]"></span>
-                }
             </span>
+        }
+
+        @for (var i = 0; i < 42; i++)
+        {
+            <span class="piece @pieces[i]"></span>
         }
     </div>
 
-
-
-    @for (var i = 0; i < 42; i++)
-    {
-        <span class="@pieces[i]"></span>
-    }
-
 </div>
-
-
-
 
 
 
@@ -176,6 +165,8 @@
     }
 
 
+
+// Handle the logic for playing a piece in the specified column.
     private void PlayPiece(byte col)
     {
         try
@@ -185,9 +176,12 @@
 
             var landingRow = State.PlayPiece(col);
 
+           // Update the pieces array to reflect the new piece's position
             pieces[turn] =
                 $"player{player} col{col} drop{landingRow}";
 
+          
+          // Add the move to the move history list
             moveHistory.Add(
                 $"Player {player} → Column {col + 1}, Row {landingRow}"
             );
@@ -200,6 +194,8 @@
             errorMessage = ex.Message;
         }
 
+       
+       // Check for a winner after the move and update the winner message accordingly
         winnerMessage = State.CheckForWin() switch
         {
             GameState.WinState.Player1_Wins =>
@@ -215,6 +211,8 @@
         };
     }
 
+
+// Reset the game state, clear messages, and reset the pieces array and move history.
 private void ResetGame()
     {
         State.ResetBoard();

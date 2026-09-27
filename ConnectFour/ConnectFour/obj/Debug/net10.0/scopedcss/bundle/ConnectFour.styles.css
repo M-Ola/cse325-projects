@@ -501,35 +501,17 @@ main[b-vuio0p1jtn] {
    ========================================= */
 
 div.board[b-0pk5optfxr] {
-    /*
-       Space between arrows and board.
-    */
+    position: relative;
+    /* Add this so absolute coordinates are bounded to the board */
     margin: 1em 0 0 0;
-
     padding: 0;
-
-    /*
-       7 columns × 4em
-    */
     width: 28em;
-
-    /*
-       6 rows × 4em
-    */
     height: 24em;
-
     display: flex;
-
     flex-direction: row;
-
     flex-wrap: wrap;
-
-    overflow: hidden;
-
     row-gap: 0;
-
     pointer-events: none;
-
     z-index: 1;
 }
 
@@ -567,7 +549,7 @@ div.board[b-0pk5optfxr] {
    ========================================= */
 
 span.container[b-0pk5optfxr] {
-    
+
     box-sizing: border-box;
 
     width: 4em;
@@ -629,7 +611,7 @@ span.container[b-0pk5optfxr] {
 
     position: absolute;
 
-    top: 2em;
+    top: 0;
 
     display: block;
 
@@ -741,19 +723,19 @@ span.container[b-0pk5optfxr] {
     75%,
     90%,
     97% {
-        transform: translateY(1.27em)
+        transform: translateY(0.45em);
     }
 
     80% {
-        transform: translateY(.4em)
+        transform: translateY(0.1em);
     }
 
     95% {
-        transform: translateY(.8em)
+        transform: translateY(0.3em);
     }
 
     99% {
-        transform: translateY(1em)
+        transform: translateY(0.4em);
     }
 }
 
@@ -763,19 +745,19 @@ span.container[b-0pk5optfxr] {
     75%,
     90%,
     97% {
-        transform: translateY(5.27em)
+        transform: translateY(4.45em);
     }
 
     80% {
-        transform: translateY(3.8em)
+        transform: translateY(3.6em);
     }
 
     95% {
-        transform: translateY(4.6em)
+        transform: translateY(4.1em);
     }
 
     99% {
-        transform: translateY(4.9em)
+        transform: translateY(4.35em);
     }
 }
 
@@ -785,19 +767,19 @@ span.container[b-0pk5optfxr] {
     75%,
     90%,
     97% {
-        transform: translateY(9.27em)
+        transform: translateY(8.45em);
     }
 
     80% {
-        transform: translateY(7.2em)
+        transform: translateY(7.2em);
     }
 
     95% {
-        transform: translateY(8.3em)
+        transform: translateY(8.1em);
     }
 
     99% {
-        transform: translateY(8.8em)
+        transform: translateY(8.35em);
     }
 }
 
@@ -807,19 +789,19 @@ span.container[b-0pk5optfxr] {
     75%,
     90%,
     97% {
-        transform: translateY(13.27em)
+        transform: translateY(12.45em);
     }
 
     80% {
-        transform: translateY(10.6em)
+        transform: translateY(10.8em);
     }
 
     95% {
-        transform: translateY(12em)
+        transform: translateY(12.1em);
     }
 
     99% {
-        transform: translateY(12.7em)
+        transform: translateY(12.35em);
     }
 }
 
@@ -829,19 +811,19 @@ span.container[b-0pk5optfxr] {
     75%,
     90%,
     97% {
-        transform: translateY(17.27em)
+        transform: translateY(16.45em);
     }
 
     80% {
-        transform: translateY(14em)
+        transform: translateY(14.4em);
     }
 
     95% {
-        transform: translateY(15.7em)
+        transform: translateY(16.1em);
     }
 
     99% {
-        transform: translateY(16.5em)
+        transform: translateY(16.35em);
     }
 }
 
@@ -851,21 +833,24 @@ span.container[b-0pk5optfxr] {
     75%,
     90%,
     97% {
-        transform: translateY(21.27em)
+        transform: translateY(20.45em);
     }
 
     80% {
-        transform: translateY(17.4em)
+        transform: translateY(18.0em);
     }
 
     95% {
-        transform: translateY(19.4em)
+        transform: translateY(20.1em);
     }
 
     99% {
-        transform: translateY(20.4em)
+        transform: translateY(20.35em);
     }
 }
+
+
+
 
 .move-history[b-0pk5optfxr] {
     margin-top: 2rem;
